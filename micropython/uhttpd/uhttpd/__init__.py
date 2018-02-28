@@ -104,7 +104,7 @@ class Server:
             headers = {}
             num_headers = 0
             while True:
-                line = yield from reader.readline()
+                line = reader.readline()
                 if not line or line == b'\r\n':
                     break
                 k, v = Server.parse_header(line.decode('UTF-8'))
@@ -124,7 +124,7 @@ class Server:
                 if content_length > self._config['max_content_length']:
                     raise BadRequestException("Content size exceeds maximum allowable")
                 elif content_length > 0:
-                    body = yield from reader.read(content_length)
+                    body = reader.read(content_length)
                     #logging.debug("Read body: {}".format(body))
                     http_request['body'] = body
             #
