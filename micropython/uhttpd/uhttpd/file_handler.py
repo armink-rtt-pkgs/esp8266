@@ -44,7 +44,7 @@ def is_dir(path):
 
 def listdir(path):
     import sys
-    if sys.platform == 'esp8266':
+    if sys.platform == 'rt-thread':
         return uos.listdir(path)
     else:
         ret = []
